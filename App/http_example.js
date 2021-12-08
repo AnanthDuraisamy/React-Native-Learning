@@ -35,13 +35,13 @@ class Networking extends Component {
     render () {
         const {data, isloading} = this.state;
         return (
-            <View style = {styles}>
+            <View style = {styles.container}>
             {
                 isloading ? <ActivityIndicator/> :(
                     <FlatList data = {data}
                     keyExtractor = {({id},index) => id}
                     renderItem = {({item}) => (
-                        <Text>{item.title} {item.releaseYear} </Text>
+                        <Text style = {styles.item}>{item.title} {item.releaseYear} </Text>
                     )}/>
                 )
             }
@@ -55,9 +55,15 @@ export default Networking
 
 const styles = StyleSheet.create ({
     container: {
-        flex: 1,
+        //flex: 1,
+        padding: 10,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#d2f7f1'
+     },
+     item: {
+        fontFamily: 'PTSerif-Bold',
+        fontSize: 30,
+        padding: 10
      }
 })

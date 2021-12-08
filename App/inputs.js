@@ -53,6 +53,7 @@ class Inputs extends Component {
                 }
                  title = "Submit"  
                  color = "red"
+                 style = {styles.submitButton}
                 />
             </View>
         )
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
         margin: 15,
         height: 0,
         borderColor: '#7a42f4',
+        fontFamily: 'PTSerif-Bold'
      },
      submitButtonText:{
         color: 'white'

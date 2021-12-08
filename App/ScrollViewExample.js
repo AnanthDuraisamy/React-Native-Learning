@@ -26,7 +26,7 @@ class ScrollViewExample extends Component {
                   this.state.names.map((item, index) => (
                      <View key = {item.id} style = {styles.item}>
                         <TouchableOpacity onPress = {this.props.onPress}>
-                        <Text>{item.name}</Text>
+                        <Text style = {styles.itemText}>{item.name}</Text>
                         </TouchableOpacity>
                      </View>
                   ))
@@ -48,6 +48,9 @@ const styles = StyleSheet.create ({
       borderColor: '#2a4944',
       borderWidth: 1,
       backgroundColor: '#d2f7f1'
+   },
+   itemText: {
+      fontFamily: 'PTSerif-Italic'
    },
    container: {
       flex: 1,

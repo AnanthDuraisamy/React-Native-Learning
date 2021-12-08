@@ -26,7 +26,7 @@ const App = () => {
    return (
 
    /* 1.React Navigation*/
-   <NativeBaseProvider>
+  // <NativeBaseProvider>
       <NavigationContainer>
          <Stack.Navigator>
              <Stack.Screen name = "Login"
@@ -46,7 +46,7 @@ const App = () => {
             options = {{ title: 'Map Display'}}/>
          </Stack.Navigator>
       </NavigationContainer>
-   </NativeBaseProvider>
+   //</NativeBaseProvider>
 
 
       /*Sample FlatList */
@@ -94,10 +94,12 @@ const HomeScreen = ({navigation}) => {
                <Cat name = "Second Cat"/>
 
                <Networking />
+               
             </View>
             <Button style = {styles.button}
                   title = "Go to Profile"
-                  onPress = {() => navigation.navigate('Profile',{ name : 'Ananth'})}/>
+                  onPress = {() => navigation.navigate('Profile',{ name : 'Ananth'})}
+                  />
       </SafeAreaView>
 
    )
@@ -128,11 +130,12 @@ const MapScreen = ({navigation}) => {
 }
 
 const Cat = (props) => {
+   /* 5.Display Image and its Text */
    return (
        <View>
             <Image source = {{uri: "https://reactnative.dev/docs/assets/p_cat1.png"}}
             style ={{width: 100, height: 100}}/>
-           <Text> I am your {props.name} </Text> 
+           <Text style = {styles.item}> I am your {props.name} </Text> 
        </View>
    );
 }
@@ -158,6 +161,7 @@ const styles = StyleSheet.create({
       padding: 10,
       fontSize: 18,
       height: 44,
+      fontFamily: 'PTSerif-Italic'
     },
 
 })
