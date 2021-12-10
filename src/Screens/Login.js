@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, Alert } from 'react-native'
+import GlobalStyle from '../Utils/GlobalStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-class Inputs extends Component {
+class LoginPage extends Component {
 
     constructor(props) {
         super(props);
@@ -19,8 +21,21 @@ class Inputs extends Component {
         this.setState({ password: text})
     }
 
-    login = (email, pass) => {
-        alert('email:' + email + 'password: ' + pass)
+    setData = async (email) => {
+
+        try{
+            if(email.length == 0){
+                Alert.alert('Warning !', 'Please enter your data')
+            }
+            else{
+                 AsyncStorage.setItem('UserName', email)
+
+                Alert.alert('Data Updated')
+            }
+        }
+        catch(error){
+            Alert.alert('Warning !', console.log.error())
+        }
     }
 
     render() {
@@ -31,6 +46,7 @@ class Inputs extends Component {
                 underlineColorAndroid = "transparent"
                 placeholder = "Email"
                 placeholderTextColor = "#9a73ef"
+                backgroundColor = '#00feef'
                 autoCapitalize = "none"
                 autoCorrect = "none"
                 onChangeText = {this.handleEmail}
@@ -40,10 +56,19 @@ class Inputs extends Component {
                 underlineColorAndroid = "transparent"
                 placeholder = "Password"
                 placeholderTextColor = "#9a73ef"
+                backgroundColor = '#00feef'
                 autoCapitalize = "none"
                 autoCorrect = "none"
                 secureTextEntry = 'true'
                 onChangeText = {this.handlePassword}
+                />
+
+            <Button 
+                onPress = {
+                    () => this.setData(this.state.email)
+                }
+                 title = "Save"  
+                 style = {GlobalStyle.customFontBold}
                 />
 
                 <Button 
@@ -52,15 +77,15 @@ class Inputs extends Component {
                     this.props.onPress
                 }
                  title = "Submit"  
-                 color = "red"
-                 style = {styles.submitButton}
+                 //color = "red"
+                 style = {GlobalStyle.customFontBold}
                 />
             </View>
         )
     }
 }
 
-export default Inputs
+export default LoginPage
 
 const styles = StyleSheet.create({
     container: {
@@ -79,7 +104,6 @@ const styles = StyleSheet.create({
         margin: 15,
         height: 0,
         borderColor: '#7a42f4',
-        fontFamily: 'PTSerif-Bold'
      },
      submitButtonText:{
         color: 'white'

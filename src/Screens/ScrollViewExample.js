@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, Image, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, Image, View, StyleSheet, ScrollView, Pressable } from 'react-native';
+import GlobalStyle from '../Utils/GlobalStyle';
 
 class ScrollViewExample extends Component {
    state = {
@@ -7,12 +8,12 @@ class ScrollViewExample extends Component {
          {'name': 'Jana', 'id': 1},
          {'name': 'Vivek', 'id': 2},
          {'name': 'Kumar', 'id': 3},
-         {'name': 'Kupendiran', 'id': 4},
+         {'name': 'Ananth', 'id': 4},
          {'name': 'Yokesh', 'id': 5},
          {'name': 'Anbarasan', 'id': 6},
          {'name': 'Vinoth Krishnan', 'id': 7},
          {'name': 'Manoj Kumar', 'id': 8},
-         {'name': 'Ananth', 'id': 9},
+         {'name': 'Kupendiran', 'id': 9},
          {'name': 'Karthikeyan', 'id': 10},
          {'name': 'Dilipan', 'id': 11},
          {'name': 'Rajesh Pradeep', 'id': 12}
@@ -24,11 +25,11 @@ class ScrollViewExample extends Component {
             <ScrollView>
                {
                   this.state.names.map((item, index) => (
+                  <Pressable onPress = {this.props.onPress}>
                      <View key = {item.id} style = {styles.item}>
-                        <TouchableOpacity onPress = {this.props.onPress}>
-                        <Text style = {styles.itemText}>{item.name}</Text>
-                        </TouchableOpacity>
+                        <Text style = {GlobalStyle.customFontBold}>{item.name}</Text>
                      </View>
+                  </Pressable>
                   ))
                }
             </ScrollView>
@@ -48,9 +49,6 @@ const styles = StyleSheet.create ({
       borderColor: '#2a4944',
       borderWidth: 1,
       backgroundColor: '#d2f7f1'
-   },
-   itemText: {
-      fontFamily: 'PTSerif-Italic'
    },
    container: {
       flex: 1,

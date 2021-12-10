@@ -7,10 +7,12 @@
  */
 
 import React, { Component }from 'react';
-import ScrollViewExample from './App/ScrollViewExample';
-import Inputs from './App/inputs';
-import Networking from './App/http_example';
-import MapView from './App/MapView';
+import Welcome from './src/Screens/Home';
+import ScrollViewExample from './src/Screens/ScrollViewExample';
+import LoginPage from './src/Screens/Login';
+import Networking from './src/Screens/http_example';
+import MapView from './src/Screens/MapView';
+import GlobalStyle from './src/Utils/GlobalStyle';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeBaseProvider } from "native-base"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -36,6 +38,10 @@ const App = () => {
             <Stack.Screen name = "Home"
             component = {HomeScreen}
             options = {{ title: 'Home Page'}}/>
+
+            <Stack.Screen name = "API"
+            component = {APIScreen}
+            options = {{ title: 'API Page'}}/>
 
             <Stack.Screen name = "Profile"
             component = {ProfileScreen}
@@ -76,7 +82,7 @@ const LoginScreen = ({navigation}) => {
    return (
       /* 2.Login sample */
       <SafeAreaView>
-            <Inputs onPress = {() => navigation.navigate('Home')}/>
+            <LoginPage onPress = {() => navigation.navigate('Home')}/>
       </SafeAreaView>
 
       /* Button */
@@ -87,22 +93,44 @@ const LoginScreen = ({navigation}) => {
 
 const HomeScreen = ({navigation}) => {
    return (
-      /* 3.API */
+      /* 3.Async Storage in Welcome/Home Screen */
       <SafeAreaView>
-            <View>
+            {/* <View>
+
                <Cat name = "First Cat"/>
                <Cat name = "Second Cat"/>
 
                <Networking />
                
-            </View>
+            </View> */}
+
+            <Welcome />
+
             <Button style = {styles.button}
                   title = "Go to Profile"
                   onPress = {() => navigation.navigate('Profile',{ name : 'Ananth'})}
                   />
+
+            <Button style = {styles.button}
+                  title = "Go to API"
+                  onPress = {() => navigation.navigate('API')}
+                  />
       </SafeAreaView>
 
    )
+}
+
+const APIScreen = () => {
+   /* 3.API */
+         return (
+            <View>
+
+               <Cat name = "Movies List and its Release Year"/>
+
+               <Networking />
+               
+            </View>
+         )
 }
 
 const ProfileScreen = ({navigation,route}) => {
@@ -134,8 +162,8 @@ const Cat = (props) => {
    return (
        <View>
             <Image source = {{uri: "https://reactnative.dev/docs/assets/p_cat1.png"}}
-            style ={{width: 100, height: 100}}/>
-           <Text style = {styles.item}> I am your {props.name} </Text> 
+            style ={{width: 100, height: 100, marginHorizontal: 150}}/>
+           <Text style = {[GlobalStyle.customFontItalic,styles.item]}> {props.name} </Text> 
        </View>
    );
 }
@@ -161,7 +189,6 @@ const styles = StyleSheet.create({
       padding: 10,
       fontSize: 18,
       height: 44,
-      fontFamily: 'PTSerif-Italic'
     },
 
 })

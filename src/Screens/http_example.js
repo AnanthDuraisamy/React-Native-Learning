@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import { create } from "react-test-renderer";
+import GlobalStyle from "../Utils/GlobalStyle";
 
 
 class Networking extends Component {
@@ -41,7 +42,7 @@ class Networking extends Component {
                     <FlatList data = {data}
                     keyExtractor = {({id},index) => id}
                     renderItem = {({item}) => (
-                        <Text style = {styles.item}>{item.title} {item.releaseYear} </Text>
+                        <Text style = {[GlobalStyle.customFontBold,styles.item]}>{item.title} {item.releaseYear} </Text>
                     )}/>
                 )
             }
@@ -62,7 +63,6 @@ const styles = StyleSheet.create ({
         backgroundColor: '#d2f7f1'
      },
      item: {
-        fontFamily: 'PTSerif-Bold',
         fontSize: 30,
         padding: 10
      }
